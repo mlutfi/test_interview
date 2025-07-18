@@ -1,0 +1,6 @@
+# Database Configuration
+DATABASE_URL="mysql://root:@localhost:3306/fbg_presence"
+PORT=4000
+JWT_SECRET_KEY=h3lloWorld_123
+JWT_REFRESH_SECRET_KEY=worldH3llo
+GLOBAL_SECRET_KEY=helloWorld
