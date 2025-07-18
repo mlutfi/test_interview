@@ -21,13 +21,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className="group/body">
-        <StrictMode>
+        {/* <StrictMode> */}
           {/* <AuthProvider session={session}> */}
             <ThemeProvider defaultTheme='light' storageKey='ui-theme'>
               {children}
             </ThemeProvider>
           {/* </AuthProvider> */}
-        </StrictMode>
+        {/* </StrictMode> */}
       </body>
     </html>
   );

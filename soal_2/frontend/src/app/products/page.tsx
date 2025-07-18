@@ -11,9 +11,8 @@ import { Button } from '@/components/ui/button'
 import { IconPlus } from '@tabler/icons-react'
 import { type ResponseData } from '../../types/types';
 
-async function getData() {
-  const { BASE_URL_API } = process.env
-  const res = await fetch(BASE_URL_API + '/products', {
+async function fetchDataProduct() {
+  const res = await fetch(process.env.BASE_URL_API + '/products', {
       headers: {
           "Content-Type": "application/json"
       },
@@ -26,9 +25,26 @@ async function getData() {
   return data.data
 }
 
+const ComponentPage = () => {
+  const [dataProduct, setDataProduct] = useState<any>([])
 
-const ProductPage: FC = async () => {
-  const products = await getData()
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const product = await fetchDataProduct()
+        setDataProduct(product)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    fetchProducts()
+  }, [])
+
+  useEffect(() => {
+    console.log('dataProduct', dataProduct)
+  }, [dataProduct])
+  
   return (
     <>
       <Header fixed>
@@ -46,17 +62,18 @@ const ProductPage: FC = async () => {
             <p className='text-muted-foreground'>Product</p>
           </div>
           <div className='flex gap-2'>
-            <Button className='space-x-1' onClick={() => console.log('test') }>
+            <Button className='space-x-1' onClick={() => console.log('test')}>
               <span>Add New</span> <IconPlus size={18} />
             </Button>
           </div>
         </div>
         
         <div className='-mx-4 mt-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
-          <DataTable data={products} columns={columns} />
+          <DataTable data={dataProduct} columns={columns} />
         </div>
       </Main>
     </>
   )
 }
-export default ProductPage;
+
+export default ComponentPage

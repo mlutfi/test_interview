@@ -171,9 +171,9 @@ const SidebarMenuCollapsedDropdown = ({
 }
 
 function checkIsActive(href: string, item: NavItem, mainNav = false) {
-  console.log('href', href)
-  console.log('item', item)
-  console.log('mainNav', mainNav)
+  // console.log('href', href)
+  // console.log('item', item)
+  // console.log('mainNav', mainNav)
   return (
     href === item.url || // /endpint?search=param
     href.split('?')[0] === item.url || // endpoint
